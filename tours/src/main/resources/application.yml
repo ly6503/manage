@@ -1,0 +1,29 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: tours-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848   #nacos地址
+            dataID: tours-server
+            groupId: DEFAULT_GROUP
+            data-type: json      #注意是json类型
+            rule-type: flow
+#设置feign客户端超时时间
+ribbon:
+  ReadTimeout: 50000
+  ConnectTimeout: 20000
+
+logging:
+  level:
+    com.qiouou.feign.ToursFeign: error
